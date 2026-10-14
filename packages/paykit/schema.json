@@ -1,0 +1,20 @@
+{
+  "$schema": "https://villaforge.local/paykit/schema-v1.json",
+  "name": "VillaForge PayKit",
+  "version": "1.0.0",
+  "status": "BACKEND_READY",
+  "dataModels": {
+    "Checkout": { "product_id": "string", "buyer_email": "string", "price_cents": "int>=100", "currency": "iso-3", "status": "pending|paid|failed", "session_id": "string", "license_key": "string|null" },
+    "License": { "license_key": "pk_<product>_<32hex>", "product_id": "string", "plan": "string", "issued_at": "epoch-ms" },
+    "Payment": { "product_id": "string", "cents": "int", "currency": "iso-3", "ts": "epoch-ms" }
+  },
+  "interfaces": {
+    "createCheckout": { "method": "POST", "path": "/paykit/checkout", "request": { "product_id": "string", "price_cents": "int", "currency": "iso-3?", "buyer_email": "email", "name": "string?", "success_url": "https-url", "cancel_url": "https-url?" }, "response": { "session_id": "string", "checkout_url": "url|null", "live": "boolean" }, "errors": ["ValidationError", "StripeError"] },
+    "handleWebhook": { "method": "POST", "path": "/paykit/webhook", "request": "raw-stripe-event", "headers": { "stripe-signature": "t=..,v1=.." }, "response": { "handled": "boolean", "license_key": "string?", "idempotent": "boolean?" }, "errors": ["SignatureError"] },
+    "validateLicense": { "method": "POST", "path": "/paykit/license/validate", "request": { "license_key": "string", "product_id": "string?" }, "response": { "valid": "boolean", "plan": "string|null" } },
+    "mrr": { "method": "GET", "path": "/paykit/mrr", "response": { "mrr_30d_cents": "int", "payments_30d": "int", "avg_payment_cents": "int" } }
+  },
+  "storage": { "sqlite": "storage/sqlite.mjs (VPS)", "memory": "InMemoryStorage (Tests/Sandbox)" },
+  "modes": { "sandbox": "ohne Stripe-Keys: Session sbx_*, keine Live-Zahlungen", "live": "Stripe-Keys aus Hub-Secret-Store, Signaturpruefung aktiv" },
+  "guardrails": { "payments": "Live-Zahlungen nur nach manueller Freigabe des Owners", "keys": "Stripe-Keys niemals in Repos, nur Hub-Secret-Store" }
+}
