@@ -1,0 +1,13 @@
+{
+  "name": "villaforge-automonetize-ai-marketplace",
+  "version": "1.0.0",
+  "description": "Vollautomatischer AI-Marketplace mit PayKit und Agenten-Swarm",
+  "main": "src/main.py",
+  "scripts": {
+    "build": "python3 -m py_compile src/main.py",
+    "test": "node packages/paykit/paykit.test.mjs",
+    "smoke": "node packages/paykit/paykit.regression.test.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
