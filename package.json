@@ -2,11 +2,7 @@
   "name": "automonetize-marketplace",
   "version": "1.0.0",
   "scripts": {
-    "build": "python3 -m compileall .",
-    "test": "pytest tests/",
-    "smoke": "node tests/test_e2e_marketplace.mjs"
-  },
-  "dependencies": {
-    "stripe": "^14.0.0"
+    "test": "python3 -m unittest discover tests",
+    "build": "pip install -r requirements.txt"
   }
 }
