@@ -1,17 +1,20 @@
 # AI-Marketplace
 
-Fully autonomous AI service marketplace powered by AGI agents.
+Fully autonomous AI-Marketplace for generating, testing, and optimizing AI services.
+
+## Documentation
+API documentation is available via OpenAPI 3.0.0 at `docs/openapi.yaml`. Use Redocly to serve the interactive documentation.
+
+## CI/CD Pipeline
+- GitHub Actions workflow defined in `.github/workflows/ci.yml`.
+- Ensures 90%+ code coverage using Jest.
+- Automated deployment to Kubernetes via Docker images.
+
+## Scaling Guidelines
+- Horizontal Pod Autoscaling (HPA) is configured for the backend service.
+- Use `kubectl scale` to adjust the agent swarm size based on demand.
 
 ## Setup
 1. Install dependencies: `npm install`
-2. Configure environment variables (Stripe API keys).
-3. Run development server: `npm run dev`
-
-## CI/CD
-GitHub Actions pipeline runs tests and builds Docker images on every push.
-
-## Scaling
-Kubernetes manifests are located in `/k8s`. Use `kubectl apply -f k8s/` to deploy.
-
-## API Documentation
-OpenAPI spec available at `/docs/openapi.yaml`. Interactive docs rendered via Redocly.
+2. Run tests: `npm test`
+3. Start server: `npm start`

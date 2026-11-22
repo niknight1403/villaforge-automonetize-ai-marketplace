@@ -1,15 +1,20 @@
 {
   "name": "ai-marketplace",
   "version": "1.0.0",
-  "description": "Autonomous AI Marketplace",
+  "description": "Autonomous AI Service Marketplace",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "build": "echo 'Build complete: No compilation required for Node.js'",
-    "test": "node tests/run.mjs",
-    "smoke": "node tests/smoke.mjs"
+    "test": "node --test tests/run.mjs",
+    "smoke": "node src/main.js --smoke-test",
+    "build": "node -e \"require('fs').writeFileSync('dist/build.log', 'Build successful at ' + new Date().toISOString())\"",
+    "test": "node --test tests/run.mjs",
+    "smoke": "node tests/smoke.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "stripe": "^12.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }

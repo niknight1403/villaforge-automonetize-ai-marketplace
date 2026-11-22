@@ -1,12 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
+import { processBillingCycle } from '../src/billing/billingService.js';
 
-test('Service Generation Logic', () => {
-  const service = { id: 1, name: 'Test Service' };
-  assert.strictEqual(service.id, 1);
+test('Billing Cycle Logic Test', () => {
+  const result = processBillingCycle({ userId: 'user123' });
+  assert.strictEqual(result, 'success', 'Billing should process successfully');
 });
 
-test('Billing Logic', () => {
-  const status = 'active';
-  assert.strictEqual(status, 'active');
+test('Error Handling Test', () => {
+  assert.throws(() => {
+    processBillingCycle(null);
+  }, /Invalid input/);
 });

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: AI-Marketplace API
   version: 1.0.0
-  description: API for autonomous AI-service generation and subscription management.
+  description: API for autonomous AI service generation and subscription management.
 paths:
   /services:
     get:
@@ -14,11 +14,18 @@ paths:
     post:
       summary: Create subscription
       responses:
-        '201':
+        '200':
           description: Subscription created
-  /services/generate:
+  /billing/usage:
     post:
-      summary: Trigger AI service generation
+      summary: Report API usage
       responses:
-        '202':
-          description: Generation initiated
+        '200':
+          description: Usage recorded
+components:
+  schemas:
+    Service:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
