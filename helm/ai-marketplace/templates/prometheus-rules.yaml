@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ai-marketplace-rules
+  labels:
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+  - name: ai-marketplace.rules
+    rules:
+    - alert: HighCpuUsage
+      expr: sum(rate(container_cpu_usage_seconds_total[5m])) by (pod) > 0.8
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary: High CPU usage detected
+    - alert: HighErrorRate
+      expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: High error rate detected

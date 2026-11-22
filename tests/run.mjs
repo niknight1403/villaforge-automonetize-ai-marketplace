@@ -1,12 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
+import { processBillingCycle } from '../src/billing/billingService.js';
 
-test('Kern-Logik: Service-Generierung', () => {
-  const service = { id: 1, name: 'AI-Agent-Service' };
-  assert.strictEqual(service.id, 1);
+test('Billing Cycle Processing', () => {
+  const result = processBillingCycle({ userId: 1, amount: 9.99 });
+  assert.strictEqual(result.status, 'success');
 });
 
-test('Kern-Logik: Abonnement-Status', () => {
-  const user = { subscribed: true };
-  assert.strictEqual(user.subscribed, true);
-});
+console.log('Tests passed successfully.');

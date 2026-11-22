@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info:
+  title: AI-Marketplace API
+  description: API for autonomous AI service generation and subscription management.
+  version: 1.0.0
+paths:
+  /api/v1/services:
+    get:
+      summary: List all AI services
+      responses:
+        '200':
+          description: Success
+  /api/v1/billing/subscribe:
+    post:
+      summary: Create subscription via Stripe
+      responses:
+        '201':
+          description: Subscription created
+components:
+  schemas:
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string

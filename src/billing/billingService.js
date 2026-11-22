@@ -12,7 +12,7 @@ async function processBillingCycle(userId, subscriptionItemId, totalUsage) {
   }
 
   try {
-    await syncUsageToStripe(subscriptionItemId, totalUsage);
+    await syncUsageToStripe(subscriptionItemId, { quantity: totalUsage, timestamp: Date.now() });
     return { success: true };
   } catch (error) {
     console.error('Stripe Sync Failed:', error);
