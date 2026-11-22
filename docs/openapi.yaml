@@ -9,10 +9,10 @@ paths:
       summary: List all AI services
       responses:
         '200':
-          description: Successful response
+          description: A list of services
   /billing/subscribe:
     post:
-      summary: Create subscription
+      summary: Create a subscription
       responses:
         '200':
           description: Subscription created
@@ -22,10 +22,3 @@ paths:
       responses:
         '200':
           description: Usage recorded
-components:
-  schemas:
-    Service:
-      type: object
-      properties:
-        id: {type: string}
-        name: {type: string}
