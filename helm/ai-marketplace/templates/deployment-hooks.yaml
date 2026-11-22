@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "ai-marketplace.fullname" . }}-rollback-hook
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded
+    "helm.sh/hook-weight": "-5"
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: rollback
+        image: bitnami/kubectl:latest
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            if [ "$(kubectl get deployment {{ include "ai-marketplace.fullname" . }} -o jsonpath='{.status.readyReplicas}')" != "$(kubectl get deployment {{ include "ai-marketplace.fullname" . }} -o jsonpath='{.spec.replicas}')" ]; then
+              echo "Deployment failed, rolling back...";
+              kubectl rollout undo deployment/{{ include "ai-marketplace.fullname" . }};
+            fi
