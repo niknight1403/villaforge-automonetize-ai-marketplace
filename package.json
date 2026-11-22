@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node --test tests/run.mjs",
     "smoke": "node src/main.js --smoke-test",
-    "build": "node -e \"require('fs').writeFileSync('dist/build.log', 'Build successful at ' + new Date().toISOString())\"",
+    "build": "node scripts/fix-build.js",
     "test": "node --test tests/run.mjs",
     "smoke": "node tests/smoke.js"
   },
