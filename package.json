@@ -1,12 +1,13 @@
 {
   "name": "ai-marketplace",
   "version": "1.0.0",
-  "description": "AI Marketplace with AGI Agents",
+  "description": "Autonomous AI Marketplace",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "node --test tests/*.test.js",
-    "smoke": "node tests/smoke.test.js"
+    "build": "echo 'Build complete: No compilation required for Node.js'",
+    "test": "node tests/run.mjs",
+    "smoke": "node tests/smoke.mjs"
   },
   "dependencies": {
     "express": "^4.18.2"
