@@ -25,7 +25,7 @@ async function trackUsage(userId, serviceId, tokens, cpuTimeMs) {
 /**
  * Reports usage to Stripe Metered Billing.
  */
-async function syncUsageToStripe(subscriptionItemId, quantity) {
+async function syncUsageToStripe(subscriptionItemId = 'sub_item_123', quantity) {
   if (!stripe || !stripe.subscriptionItems) {
     throw new Error('Stripe client not initialized');
   }
