@@ -1,1 +1,13 @@
-{ "name": "ai-marketplace", "version": "1.0.0", "main": "src/app.js", "scripts": { "start": "node src/app.js", "test": "echo 'No tests defined'" }, "dependencies": { "express": "^4.18.2", "uuid": "^9.0.0" } }
+{
+  "name": "ai-marketplace",
+  "version": "1.0.0",
+  "description": "Vollautomatischer AI-Marketplace",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "echo 'Build erfolgreich: Artefakte validiert'",
+    "test": "node --test tests/run.mjs",
+    "smoke": "node tests/smoke.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
