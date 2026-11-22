@@ -1,4 +1,4 @@
-const http = require('http');
+import http from 'http';
 
 async function runSmokeTest() {
   console.log('Starting Smoke Test: AI Marketplace Flow...');
